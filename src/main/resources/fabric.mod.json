@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "ccgen",
+  "version": "${version}",
+
+  "name": "Caves & Cliffs Part Two Mod",
+  "description": "Can't wait for the part two? This mod brings it!",
+  "authors": [
+    "Akashii_Kun"
+  ],
+  "contact": {
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT",
+  "icon": "assets/ccgen/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.akashiikun.ccgen.CavesCliffsGenerationMod"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
