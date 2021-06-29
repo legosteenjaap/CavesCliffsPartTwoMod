@@ -4,14 +4,15 @@
   "version": "${version}",
 
   "name": "Caves & Cliffs Part Two Mod",
-  "description": "Can't wait for the part two? This mod brings it!",
+  "description": "Can't wait for the part two? This mod brings it! Now featuring 3D Biomes!",
   "authors": [
-    "Akashii_Kun"
+    "Akashii_Kun",
+    "SuperCoder79",
+    "nyuppo"
   ],
   "contact": {
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/AkashiiKun/CavesCliffsPartTwoMod"
   },
-
   "license": "MIT",
   "icon": "assets/ccgen/icon.png",
 
@@ -21,14 +22,13 @@
       "io.github.akashiikun.ccgen.CavesCliffsGenerationMod"
     ]
   },
-
+  "mixins": [
+    "ccgen.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "modmenu": "*"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "package": "io.github.akashiikun.ccgen.mixin",
+  "required": true,
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "MixinChunkGenerator",
+    "MixinHorizontalVoronoiBiomeAccessType",
+    "MixinVanillaLayeredBiomeSource"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

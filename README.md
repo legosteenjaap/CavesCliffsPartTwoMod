@@ -1,9 +1,12 @@
-# Fabric Example Mod
+# Caves & Cliffs Part Two Mod
 
-## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Can't wait for the part two? This mod brings it! Now featuring 3D Biomes!
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This Mod is under MIT license.
+
+###Credits
+
+SuperCoder79: Original code of 3D Biomes (https://github.com/SuperCoder7979/cavegen)
+nyuppo: Fix with cave biomes replacing all caves with Dripstone and Lush only.
