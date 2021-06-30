@@ -18,7 +18,7 @@ import net.minecraft.world.level.ColorResolver;
   */
 
 @Mixin(BiomeColors.class)
-public class BiomeColorsMixin {
+public class MixinBiomeColors {
 
 	@Shadow @Final
 	private static ColorResolver GRASS_COLOR = Biome::getGrassColorAt;
