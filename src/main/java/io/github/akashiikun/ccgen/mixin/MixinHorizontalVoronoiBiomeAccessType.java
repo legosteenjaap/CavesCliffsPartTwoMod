@@ -20,10 +20,7 @@ public class MixinHorizontalVoronoiBiomeAccessType {
     /**
      * @author SuperCoder79
      */
-<<<<<<< HEAD
-=======
 
->>>>>>> 6826a19d86a17ff26855c58f266dc7c48be3e9cf
     @Inject(method = "getBiome", at = @At("HEAD"), cancellable = true)
     public void getBiome(long seed, int x, int y, int z, BiomeAccess.Storage storage, CallbackInfoReturnable<Biome> cir) {
         cir.setReturnValue(VoronoiBiomeAccessType.INSTANCE.getBiome(seed, x, y, z, storage));
