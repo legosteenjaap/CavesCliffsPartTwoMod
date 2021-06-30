@@ -1,4 +1,4 @@
-package akashiikun.ccgen.mixin;
+package io.github.akashiikun.ccgen.mixin;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
