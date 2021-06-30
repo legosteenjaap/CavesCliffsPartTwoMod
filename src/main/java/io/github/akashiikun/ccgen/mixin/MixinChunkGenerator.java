@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.minecraft.util.crash.CrashException;
@@ -21,6 +22,7 @@ import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChunkGenerator.class)
 public class MixinChunkGenerator {
@@ -45,23 +47,23 @@ public class MixinChunkGenerator {
     /**
      * @author SuperCoder79
      */
-    @Overwrite
-    public void generateFeatures(ChunkRegion region, StructureAccessor accessor) {
+
+    @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)
+    public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo ci) {
         ChunkPos chunkPos = region.getCenterPos();
         int i = chunkPos.getStartX();
         int j = chunkPos.getStartZ();
         BlockPos blockPos = new BlockPos(i, region.getBottomY(), j);
-        Biome biome = this.populationSource.getBiomeForNoiseGen(BiomeCoords.fromChunk(chunkPos.x) + BiomeCoords.fromBlock(8), 64, BiomeCoords.fromChunk(chunkPos.z) + BiomeCoords.fromBlock(8));
         Biome underground = this.populationSource.getBiomeForNoiseGen(BiomeCoords.fromChunk(chunkPos.x) + BiomeCoords.fromBlock(8), 0, BiomeCoords.fromChunk(chunkPos.z) + BiomeCoords.fromBlock(8));
+
         ChunkRandom chunkRandom = new ChunkRandom();
         long l = chunkRandom.setPopulationSeed(region.getSeed(), i, j);
 
         try {
-            biome.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
             underground.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
         } catch (Exception var13) {
             CrashReport crashReport = CrashReport.create(var13, "Biome decoration");
-            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("Biome", (Object)biome).add("UndergroundBiome", biome);
+            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground);
             throw new CrashException(crashReport);
         }
     }
