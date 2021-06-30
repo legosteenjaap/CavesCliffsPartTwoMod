@@ -23,6 +23,7 @@ import net.minecraft.world.biome.source.BiomeLayerSampler;
 import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.VanillaLayeredBiomeSource;
 import net.minecraft.world.gen.SimpleRandom;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VanillaLayeredBiomeSource.class)
 public class MixinVanillaLayeredBiomeSource {
@@ -31,32 +32,34 @@ public class MixinVanillaLayeredBiomeSource {
 
     @Shadow @Final private Registry<Biome> biomeRegistry;
 
-    @Unique MultiNoiseBiomeSource multiNoise;
+    /**
+     * @author legosteenjaap
+     */
+    @Unique
+    MultiNoiseBiomeSource multiNoise;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void makeNoise(long seed, boolean legacyBiomeInitLayer, boolean largeBiomes, Registry<Biome> biomeRegistry, CallbackInfo ci) {
         multiNoise = new MultiNoiseBiomeSource(seed, ImmutableList.of(Pair.of(new Biome.MixedNoisePoint(0.6F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-            return (Biome)biomeRegistry.getOrThrow(BiomeKeys.LUSH_CAVES);
-         }), Pair.of(new Biome.MixedNoisePoint(0.0F, -0.6F, 0.0F, 0.0F, 0.0F), () -> {
-            return (Biome)biomeRegistry.getOrThrow(BiomeKeys.DRIPSTONE_CAVES);
-         }), Pair.of(new Biome.MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
-            return (Biome)biomeRegistry.getOrThrow(BiomeKeys.PLAINS);
-         
-         })));
+            return (Biome) biomeRegistry.getOrThrow(BiomeKeys.LUSH_CAVES);
+        }), Pair.of(new Biome.MixedNoisePoint(0.0F, -0.6F, 0.0F, 0.0F, 0.0F), () -> {
+            return (Biome) biomeRegistry.getOrThrow(BiomeKeys.DRIPSTONE_CAVES);
+        }), Pair.of(new Biome.MixedNoisePoint(0.0F, 0.0F, 0.0F, 0.0F, 0.0F), () -> {
+            return (Biome) biomeRegistry.getOrThrow(BiomeKeys.PLAINS);
+
+        })));
     }
 
     /**
-     * @author SuperCoder79
+     * @author SuperCoder79 & AkashiiKun
      */
-    @Overwrite
-    public Biome getBiomeForNoiseGen(int biomeX, int biomeY, int biomeZ) {
+    @Inject(method = "getBiomeForNoiseGen", at = @At("TAIL"), cancellable = true)
+    private void injected(int biomeX, int biomeY, int biomeZ, CallbackInfoReturnable<Biome> cir) {
         if (biomeY < 14) {
             Biome caveBiome = multiNoise.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
-            if (!caveBiome.equals((Biome)biomeRegistry.getOrThrow(BiomeKeys.PLAINS))) {
-            	return caveBiome;
+            if (!caveBiome.equals((Biome) biomeRegistry.getOrThrow(BiomeKeys.PLAINS))) {
+                cir.setReturnValue(caveBiome);
             }
         }
-
-        return this.biomeSampler.sample(this.biomeRegistry, biomeX, biomeZ);
     }
 }

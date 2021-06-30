@@ -36,6 +36,9 @@ public class MixinBiomeColors {
 		return world.getColor(pos, resolver);
 	}
 
+	/**
+	 * @author legosteenjaap
+	 */
 	@Inject(method = "getGrassColor", at = @At("HEAD"), cancellable = true)
 	private static void getGrassColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
 		cir.setReturnValue(getColor(world, pos.withY(128), GRASS_COLOR));
