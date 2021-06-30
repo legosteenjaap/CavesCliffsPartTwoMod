@@ -1,28 +1,23 @@
 package io.github.akashiikun.ccgen.mixin;
 
-import java.util.Optional;
-
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.noise.PerlinNoiseSampler;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.BiomeLayerSampler;
 import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.VanillaLayeredBiomeSource;
-import net.minecraft.world.gen.SimpleRandom;
 
 @Mixin(VanillaLayeredBiomeSource.class)
 public class MixinVanillaLayeredBiomeSource {
@@ -48,15 +43,13 @@ public class MixinVanillaLayeredBiomeSource {
     /**
      * @author SuperCoder79
      */
-    @Overwrite
-    public Biome getBiomeForNoiseGen(int biomeX, int biomeY, int biomeZ) {
+    @Inject(method = "getBiomeForNoiseGen", at = @At("HEAD"), cancellable = true)
+    public void getBiomeForNoiseGen(int biomeX, int biomeY, int biomeZ, CallbackInfoReturnable<Biome> cir) {
         if (biomeY < 14) {
             Biome caveBiome = multiNoise.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
             if (!caveBiome.equals((Biome)biomeRegistry.getOrThrow(BiomeKeys.PLAINS))) {
-            	return caveBiome;
+            	cir.setReturnValue(caveBiome);
             }
         }
-
-        return this.biomeSampler.sample(this.biomeRegistry, biomeX, biomeZ);
     }
 }

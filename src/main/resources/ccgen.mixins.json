@@ -5,7 +5,9 @@
   "mixins": [
     "MixinChunkGenerator",
     "MixinHorizontalVoronoiBiomeAccessType",
-    "MixinVanillaLayeredBiomeSource"
+    "MixinVanillaLayeredBiomeSource",
+    "NewHeightMixin",
+    "DeepslateBlockSourceMixin"
   ],
   "client": [
     "MixinBiomeColors"
