@@ -5,10 +5,10 @@
   "mixins": [
     "MixinChunkGenerator",
     "MixinHorizontalVoronoiBiomeAccessType",
-    "MixinVanillaLayeredBiomeSource",
-    "MixinBiomeColors"
+    "MixinVanillaLayeredBiomeSource"
   ],
   "client": [
+    "MixinBiomeColors"
   ],
   "injectors": {
     "defaultRequire": 1
