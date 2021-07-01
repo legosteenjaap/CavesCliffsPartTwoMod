@@ -1,5 +1,6 @@
 package io.github.akashiikun.ccgen.mixin;
 
+import io.github.akashiikun.ccgen.ConfigValues;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.source.HorizontalVoronoiBiomeAccessType;
@@ -18,5 +19,5 @@ public class MixinDimensionType {
     public static final Identifier OVERWORLD_ID = new Identifier("overworld");
 
     @Shadow @Final @Mutable
-    protected static final DimensionType OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, -64, 384, 384, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(), OVERWORLD_ID, 0.0F);
+    protected static final DimensionType OVERWORLD = DimensionType.create(OptionalLong.empty(), true, false, false, true, 1.0D, false, false, true, false, true, ConfigValues.minYOverworld, ConfigValues.heightOverworld, ConfigValues.logicalHeightOverworld, HorizontalVoronoiBiomeAccessType.INSTANCE, BlockTags.INFINIBURN_OVERWORLD.getId(), OVERWORLD_ID, 0.0F);
 }

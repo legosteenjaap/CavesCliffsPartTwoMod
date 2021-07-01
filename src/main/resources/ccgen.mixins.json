@@ -6,6 +6,7 @@
     "MixinBiomeColors",
     "MixinChunkGenerator",
     "MixinChunkGeneratorSettings",
+    "MixinDeepslateBlockSource",
     "MixinDefaultBiomeFeatures",
     "MixinDimensionType",
     "MixinHorizontalVoronoiBiomeAccessType",

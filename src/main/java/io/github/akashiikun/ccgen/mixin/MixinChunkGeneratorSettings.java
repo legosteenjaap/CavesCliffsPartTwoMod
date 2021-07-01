@@ -1,5 +1,6 @@
 package io.github.akashiikun.ccgen.mixin;
 
+import io.github.akashiikun.ccgen.ConfigValues;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.chunk.*;
@@ -64,7 +65,7 @@ public class MixinChunkGeneratorSettings {
     @Inject(method = "createSurfaceSettings", at = @At("TAIL"), cancellable = true)
     private static void createSurfaceSettings(StructuresConfig structuresConfig, boolean amplified, CallbackInfoReturnable<MixinChunkGeneratorSettings> cir) {
         double d = 0.9999999814507745D;
-        cir.setReturnValue(new MixinChunkGeneratorSettings(structuresConfig, GenerationShapeConfig.create(-64, 384, new NoiseSamplingConfig(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D), new SlideConfig(-10, 3, 0), new SlideConfig(15, 3, 0), 1, 2, 1.0D, -0.46875D, true, true, false, amplified), Blocks.STONE.getDefaultState(), Blocks.WATER.getDefaultState(), Integer.MIN_VALUE, 0, 63, 50, false, true, true, true, true, true));
+        cir.setReturnValue(new MixinChunkGeneratorSettings(structuresConfig, GenerationShapeConfig.create(ConfigValues.minYOverworld, ConfigValues.heightOverworld, new NoiseSamplingConfig(0.9999999814507745D, 0.9999999814507745D, 80.0D, 160.0D), new SlideConfig(-10, 3, 0), new SlideConfig(15, 3, 0), 1, 2, 1.0D, -0.46875D, true, true, false, amplified), Blocks.STONE.getDefaultState(), Blocks.WATER.getDefaultState(), Integer.MIN_VALUE, 0, ConfigValues.seaLevel, ConfigValues.minSurfaceLevel, false, ConfigValues.aquifers, ConfigValues.noiseCaves, ConfigValues.deepslate, ConfigValues.usePrototypeGeneration, ConfigValues.noodleCaves));
     }
 
 }
