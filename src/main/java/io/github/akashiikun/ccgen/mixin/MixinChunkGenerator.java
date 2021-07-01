@@ -3,10 +3,15 @@ package io.github.akashiikun.ccgen.mixin;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
@@ -19,7 +24,6 @@ import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.ChunkRandom;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChunkGenerator.class)
 public class MixinChunkGenerator {
@@ -48,6 +52,11 @@ public class MixinChunkGenerator {
      * @author SuperCoder79 & AkashiiKun
      */
 
+    @Inject(method = "getWorldHeight", at = @At(value = "TAIL"), cancellable = true)
+    public void getWorldHeight (CallbackInfoReturnable<Integer> cir) {
+    	cir.setReturnValue(512);
+    }
+    
     @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo ci) {
         ChunkPos chunkPos = region.getCenterPos();

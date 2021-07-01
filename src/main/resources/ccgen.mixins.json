@@ -3,7 +3,6 @@
   "required": true,
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "MixinBiomeColors",
     "MixinChunkGenerator",
     "MixinChunkGeneratorSettings",
     "MixinDeepslateBlockSource",
@@ -11,8 +10,13 @@
     "MixinDimensionType",
     "MixinHorizontalVoronoiBiomeAccessType",
     "MixinVanillaLayeredBiomeSource",
+    "MixinDeepslateBlockSource",
     "NewHeightMixin",
-    "DeepslateBlockSourceMixin"
+    "PortalRoomMixin",
+    "MineshaftCorridorMixin",
+    "BridgePlatformMixin",
+    "MixinNetherForestSurfaceBuilder",
+    "MixinAbstractNetherSurfaceBuilder"
   ],
   "client": [
     "MixinBiomeColors"

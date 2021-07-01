@@ -14,11 +14,14 @@ public class ConfigValues {
     public static final int deepslateLevel = 0;
 
 
-    public static final int minYNether = 0;
-    public static final int heightNether = 256;
-    public static final int logicalHeightNether = 0;
-
-    public static final int minYEnd = 0;
+    public static final int minYNether = -64;
+    public static final int generationHeightNether = 384;
+    public static final int heightNether = 384;
+    public static final int logicalHeightNether = 384;
+    public static final int lavaSeaLevel = -32;
+    
+    public static final int minYEnd = -64;
+    public static final int generationHeightEnd = 256;
     public static final int heightEnd = 256;
     public static final int logicalHeightEnd= 256;
 
