@@ -17,7 +17,10 @@
     "BridgePlatformMixin",
     "MixinNetherForestSurfaceBuilder",
     "MixinAbstractNetherSurfaceBuilder",
-    "MixinAxolotlEntity"
+    "MixinAxolotlEntity",
+    "TreeFeatureMixin",
+    "MixinDripstoneClusterFeature",
+    "MixinSmallDripstoneFeature"
   ],
   "client": [
     "MixinBiomeColors"

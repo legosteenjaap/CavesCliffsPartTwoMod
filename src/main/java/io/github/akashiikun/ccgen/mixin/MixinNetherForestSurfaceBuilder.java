@@ -10,6 +10,10 @@ import net.minecraft.world.gen.surfacebuilder.NetherForestSurfaceBuilder;
 @Mixin(NetherForestSurfaceBuilder.class)
 public class MixinNetherForestSurfaceBuilder {
 
+	/**
+	 * @author Legosteenjaap
+	 */
+	
 	@ModifyConstant(constant = @Constant(intValue = 127), method = "generate")
 	private static int setHeightLimit(int original) {
 		return ConfigValues.generationHeightNether - 1;

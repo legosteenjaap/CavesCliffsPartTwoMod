@@ -20,6 +20,10 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 public class PortalRoomMixin {
 	@Shadow private boolean spawnerPlaced;
 	
+	/**
+	 * @author Legosteenjaap
+	 */
+	
     @Inject(method = "generate", at = @At(value = "HEAD"), cancellable = false)
 	public void generate(StructureWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox boundingBox, ChunkPos chunkPos, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
     	if (spawnerPlaced) spawnerPlaced = false;
