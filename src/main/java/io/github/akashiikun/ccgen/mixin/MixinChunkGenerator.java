@@ -51,11 +51,6 @@ public class MixinChunkGenerator {
     /**
      * @author SuperCoder79 & AkashiiKun
      */
-
-    @Inject(method = "getWorldHeight", at = @At(value = "TAIL"), cancellable = true)
-    public void getWorldHeight (CallbackInfoReturnable<Integer> cir) {
-    	cir.setReturnValue(512);
-    }
     
     @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo ci) {
