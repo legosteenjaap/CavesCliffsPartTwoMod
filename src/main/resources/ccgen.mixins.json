@@ -23,7 +23,8 @@
     "MixinSmallDripstoneFeature"
   ],
   "client": [
-    "MixinBiomeColors"
+    "MixinBiomeColors",
+    "MixinClientWorldProperties"
   ],
   "injectors": {
     "defaultRequire": 1
