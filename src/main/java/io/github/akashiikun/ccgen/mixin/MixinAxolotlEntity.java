@@ -11,6 +11,10 @@ import net.minecraft.world.WorldView;
 @Mixin(AxolotlEntity.class)
 public class MixinAxolotlEntity {
 	
+	/**
+	 * @author Legosteenjaap
+	 */
+	
     @Inject(method = "canSpawn", at = @At(value = "TAIL"), cancellable = true)
 	public void canSpawn(WorldView world, CallbackInfoReturnable<Boolean> cir) {
 		cir.setReturnValue(true);

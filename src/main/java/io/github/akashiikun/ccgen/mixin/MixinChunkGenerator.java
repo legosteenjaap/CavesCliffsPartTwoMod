@@ -49,7 +49,7 @@ public class MixinChunkGenerator {
     }
 
     /**
-     * @author SuperCoder79 & AkashiiKun
+     * @author SuperCoder79, Legosteenjaap & AkashiiKun
      */
     
     @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)

@@ -20,6 +20,10 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 @Mixin(DeepslateBlockSource.class)
 class MixinDeepslateBlockSource {
 
+	/**
+	 * @author Legosteenjaap
+	 */
+	
 	@ModifyConstant(constant = @Constant(intValue = -8), method = "sample")
 	private static int setDeepSlateTransitionStartLevel(int original) {
 		return ConfigValues.deepslateLevel - 8;

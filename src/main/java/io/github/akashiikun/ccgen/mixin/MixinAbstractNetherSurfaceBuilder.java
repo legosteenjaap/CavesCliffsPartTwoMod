@@ -10,6 +10,10 @@ import net.minecraft.world.gen.surfacebuilder.AbstractNetherSurfaceBuilder;
 @Mixin(AbstractNetherSurfaceBuilder.class)
 public class MixinAbstractNetherSurfaceBuilder {
 
+	/**
+	 * @author Legosteenjaap
+	 */
+	
 	@ModifyConstant(constant = @Constant(intValue = 127), method = "generate")
 	private static int setHeightLimit(int original) {
 		return ConfigValues.generationHeightNether - 1;

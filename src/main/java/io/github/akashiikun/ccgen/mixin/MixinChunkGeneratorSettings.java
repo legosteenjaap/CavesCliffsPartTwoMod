@@ -74,6 +74,10 @@ public class MixinChunkGeneratorSettings {
         this.noodleCaves = noodleCaves;
     }
 
+    /**
+	 * @author Legosteenjaap
+	 */
+    
     @Inject(method = "createIslandSettings", at = @At("TAIL"), cancellable = true)
     private static void createIslandSettings(StructuresConfig structuresConfig, BlockState defaultBlock, BlockState defaultFluid, boolean bl, boolean bl2, CallbackInfoReturnable<MixinChunkGeneratorSettings> cir) {
         cir.setReturnValue(new MixinChunkGeneratorSettings(structuresConfig, GenerationShapeConfig.create(ConfigValues.minYEnd, ConfigValues.generationHeightEnd, new NoiseSamplingConfig(2.0D, 1.0D, 80.0D, 160.0D), new SlideConfig(-3000, 64, -46), new SlideConfig(-30, 7, 1), 2, 1, 0.0D, 0.0D, true, false, bl2, false), defaultBlock, defaultFluid, Integer.MIN_VALUE, Integer.MIN_VALUE, ConfigValues.minYEnd, 0, bl, false, false, false, false, false));

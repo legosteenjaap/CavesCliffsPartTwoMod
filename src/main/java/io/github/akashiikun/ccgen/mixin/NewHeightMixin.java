@@ -16,6 +16,10 @@ import net.minecraft.world.dimension.DimensionType;
 @Mixin(DimensionType.class)
 public class NewHeightMixin {
 
+	/**
+	 * @author Legosteenjaap
+	 */
+	
     @Inject(method = "create", at = @At("HEAD"), cancellable = true)
 	private static void create(OptionalLong fixedTime, boolean hasSkylight, boolean hasCeiling, boolean ultrawarm,
 			boolean natural, double coordinateScale, boolean hasEnderDragonFight, boolean piglinSafe, boolean bedWorks,
