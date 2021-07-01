@@ -10,7 +10,9 @@
     "MixinDefaultBiomeFeatures",
     "MixinDimensionType",
     "MixinHorizontalVoronoiBiomeAccessType",
-    "MixinVanillaLayeredBiomeSource"
+    "MixinVanillaLayeredBiomeSource",
+    "NewHeightMixin",
+    "DeepslateBlockSourceMixin"
   ],
   "client": [
     "MixinBiomeColors"
