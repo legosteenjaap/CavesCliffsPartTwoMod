@@ -16,7 +16,8 @@
     "MineshaftCorridorMixin",
     "BridgePlatformMixin",
     "MixinNetherForestSurfaceBuilder",
-    "MixinAbstractNetherSurfaceBuilder"
+    "MixinAbstractNetherSurfaceBuilder",
+    "MixinAxolotlEntity"
   ],
   "client": [
     "MixinBiomeColors"

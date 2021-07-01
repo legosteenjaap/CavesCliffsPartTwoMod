@@ -68,7 +68,7 @@ public class MixinChunkGenerator {
             underground.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
         } catch (Exception var13) {
             CrashReport crashReport = CrashReport.create(var13, "Cave Biome decoration");
-            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground);
+            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground).add("Biome", (Object)biome);
             throw new CrashException(crashReport);
         }
         ci.cancel();
