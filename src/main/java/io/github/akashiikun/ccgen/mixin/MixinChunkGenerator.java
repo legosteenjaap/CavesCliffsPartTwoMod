@@ -3,10 +3,7 @@ package io.github.akashiikun.ccgen.mixin;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -27,25 +24,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChunkGenerator.class)
 public class MixinChunkGenerator {
 
+    @Unique
+    private static ChunkRegion region;
+
     @Shadow @Final protected BiomeSource populationSource;
 
     @Redirect(method = "generateStrongholdPositions", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/source/BiomeSource;locateBiome(IIIILjava/util/function/Predicate;Ljava/util/Random;)Lnet/minecraft/util/math/BlockPos;"))
     private BlockPos findY64Biome(BiomeSource source, int x, int y, int z, int radius, Predicate<Biome> predicate, Random random) {
-        return source.locateBiome(x, 64, z, radius, predicate, random);
+        return source.locateBiome(x, y, z, radius, predicate, random);
     }
 
     @Redirect(method = "carve", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/biome/source/BiomeSource;getBiomeForNoiseGen(III)Lnet/minecraft/world/biome/Biome;"))
     private Biome carveAtY64(BiomeSource storage, int biomeX, int biomeY, int biomeZ) {
-        return storage.getBiomeForNoiseGen(biomeX, 64, biomeZ);
+        return storage.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
     }
 
     @Redirect(method = "locateStructure", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/BlockPos$Mutable;set(III)Lnet/minecraft/util/math/BlockPos$Mutable;"))
     private BlockPos.Mutable setMutableAtY64(BlockPos.Mutable mutable, int x, int y, int z) {
-        return mutable.set(x, 64, z);
+        return mutable.set(x, y, z);
     }
 
     /**
-     * @author SuperCoder79
+     * @author SuperCoder79 & AkashiiKun
      */
 
     @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)
@@ -62,7 +62,7 @@ public class MixinChunkGenerator {
         try {
             underground.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
         } catch (Exception var13) {
-            CrashReport crashReport = CrashReport.create(var13, "Biome decoration");
+            CrashReport crashReport = CrashReport.create(var13, "Cave Biome decoration");
             crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground);
             throw new CrashException(crashReport);
         }

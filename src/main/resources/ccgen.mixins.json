@@ -3,7 +3,11 @@
   "required": true,
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "MixinBiomeColors",
     "MixinChunkGenerator",
+    "MixinChunkGeneratorSettings",
+    "MixinDefaultBiomeFeatures",
+    "MixinDimensionType",
     "MixinHorizontalVoronoiBiomeAccessType",
     "MixinVanillaLayeredBiomeSource"
   ],
