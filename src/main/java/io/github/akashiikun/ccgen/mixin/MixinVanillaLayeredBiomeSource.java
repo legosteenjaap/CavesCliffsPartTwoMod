@@ -18,7 +18,6 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.BiomeLayerSampler;
 import net.minecraft.world.biome.source.MultiNoiseBiomeSource;
 import net.minecraft.world.biome.source.VanillaLayeredBiomeSource;
-import net.minecraft.world.gen.SimpleRandom;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VanillaLayeredBiomeSource.class)
@@ -33,6 +32,8 @@ public class MixinVanillaLayeredBiomeSource {
      */
     @Unique
     MultiNoiseBiomeSource multiNoise;
+
+
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void makeNoise(long seed, boolean legacyBiomeInitLayer, boolean largeBiomes, Registry<Biome> biomeRegistry, CallbackInfo ci) {
@@ -52,7 +53,7 @@ public class MixinVanillaLayeredBiomeSource {
 
     @Inject(method = "getBiomeForNoiseGen", at = @At("TAIL"), cancellable = true)
     private void injected(int biomeX, int biomeY, int biomeZ, CallbackInfoReturnable<Biome> cir) {
-        if (biomeY < 14) {
+        if(biomeY < 14) {
             Biome caveBiome = multiNoise.getBiomeForNoiseGen(biomeX, biomeY, biomeZ);
             if (!caveBiome.equals((Biome) biomeRegistry.getOrThrow(BiomeKeys.PLAINS))) {
                 cir.setReturnValue(caveBiome);

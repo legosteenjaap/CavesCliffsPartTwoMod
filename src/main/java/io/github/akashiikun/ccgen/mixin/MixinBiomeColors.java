@@ -1,8 +1,10 @@
 package io.github.akashiikun.ccgen.mixin;
 
+import net.minecraft.world.ChunkRegion;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -13,7 +15,9 @@ import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.level.ColorResolver;
 
-  /**
+import java.awt.*;
+
+/**
   * @author Legosteenjaap
   */
 
@@ -37,21 +41,21 @@ public class MixinBiomeColors {
 	}
 
 	/**
-	 * @author legosteenjaap
+	 * @author legosteenjaap & AkashiiKun
 	 */
 	@Inject(method = "getGrassColor", at = @At("HEAD"), cancellable = true)
-	private static void getGrassColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-		cir.setReturnValue(getColor(world, pos.withY(128), GRASS_COLOR));
+	private static void  getGrassColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
+			cir.setReturnValue(getColor(world, pos.withY(world.getTopY()), GRASS_COLOR));
 	}
 
 	@Inject(method = "getFoliageColor", at = @At("HEAD"), cancellable = true)
 	private static void getFoliageColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-		cir.setReturnValue(getColor(world, pos.withY(128), FOLIAGE_COLOR));
+			cir.setReturnValue(getColor(world, pos.withY(world.getTopY()), FOLIAGE_COLOR));
 	}
 	
 	@Inject(method = "getWaterColor", at = @At("HEAD"), cancellable = true)
 	private static void getWaterColor(BlockRenderView world, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-		cir.setReturnValue(getColor(world, pos.withY(128), WATER_COLOR));
+			cir.setReturnValue(getColor(world, pos.withY(world.getTopY()), WATER_COLOR));
 	}
 	
 }

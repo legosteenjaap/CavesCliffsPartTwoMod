@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinHorizontalVoronoiBiomeAccessType {
 
     /**
-     * @author SuperCoder79
+     * @author SuperCoder79 & AkashiiKun
      */
 
     @Inject(method = "getBiome", at = @At("HEAD"), cancellable = true)

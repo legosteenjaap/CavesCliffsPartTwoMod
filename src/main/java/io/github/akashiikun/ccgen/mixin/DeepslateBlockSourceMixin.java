@@ -23,7 +23,7 @@ public class DeepslateBlockSourceMixin {
 
 	@Inject(method = "sample", at = @At("HEAD"), cancellable = true)
 	public void sample(int x, int y, int z, CallbackInfoReturnable<BlockState> cir) {
-		if (!ConfigValues.useDeepslate) {
+		if (!ConfigValues.deepslate) {
 			cir.setReturnValue(this.defaultBlock);
 		} else if (y < ConfigValues.deepslateLevel - 8) {
 			cir.setReturnValue(this.deepslateState);
