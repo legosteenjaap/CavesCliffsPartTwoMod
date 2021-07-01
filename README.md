@@ -30,6 +30,9 @@ legosteenjaap:
 Fix Cave Biome colors showing on surface and Mixins to client (https://github.com/AkashiiKun/CavesCliffsPartTwoMod/pull/3)
 Add Multinoisebiome Source for Cave Biomes
 
+Justsnoopy30:
+Fix feature gen and structures generating multiple times in the same place causing duplicate spawned entities and extra unnecessary server load during generation
+
 AkashiiKun:
 Replaced @Override to @Inject for mod compatibilities (MixinVanillaLayeredBiomeSource).
 

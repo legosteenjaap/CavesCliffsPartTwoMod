@@ -3,6 +3,11 @@ package io.github.akashiikun.ccgen.mixin;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import io.github.akashiikun.ccgen.mixin.accessors.StructureAccessorAccessor;
+import net.minecraft.util.registry.SimpleRegistry;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.dimension.DimensionOptions;
+import net.minecraft.world.gen.GeneratorOptions;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -11,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.util.crash.CrashException;
 import net.minecraft.util.crash.CrashReport;
@@ -49,10 +53,9 @@ public class MixinChunkGenerator {
     }
 
     /**
-     * @author SuperCoder79, Legosteenjaap & AkashiiKun
+     * @author SuperCoder79, Legosteenjaap, Justsnoopy30 & AkashiiKun
      */
-    
-    @Inject(method = "generateFeatures", at = @At(value = "TAIL"), cancellable = true)
+    @Inject(method = "generateFeatures", at = @At(value = "HEAD"), cancellable = true)
     public void generateFeatures(ChunkRegion region, StructureAccessor accessor, CallbackInfo ci) {
         ChunkPos chunkPos = region.getCenterPos();
         int i = chunkPos.getStartX();
@@ -65,10 +68,26 @@ public class MixinChunkGenerator {
 
         try {
             biome.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
-            underground.generateFeatureStep(accessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
         } catch (Exception var13) {
-            CrashReport crashReport = CrashReport.create(var13, "Cave Biome decoration");
-            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground).add("Biome", (Object)biome);
+            CrashReport crashReport = CrashReport.create(var13, "Biome decoration");
+            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("Biome", (Object)biome);
+            throw new CrashException(crashReport);
+        }
+
+        // Create separate underground StructureAccessor based on the accessor we are given but with structure generation disabled - fixes feature gen and structures generating twice
+        WorldAccess world = ((StructureAccessorAccessor) accessor).getWorld();
+        GeneratorOptions generatorOptions = ((StructureAccessorAccessor) accessor).getOptions();
+        long generatorSeed = generatorOptions.getSeed();
+        SimpleRegistry<DimensionOptions> dimensionOptionsRegistry = generatorOptions.getDimensions();
+
+        GeneratorOptions undergroundGeneratorOptions = new GeneratorOptions(generatorSeed, false, false, dimensionOptionsRegistry);
+        StructureAccessor undergroundStructureAccessor = new StructureAccessor(world, undergroundGeneratorOptions);
+
+        try {
+            underground.generateFeatureStep(undergroundStructureAccessor, (ChunkGenerator) (Object) this, region, l, chunkRandom, blockPos);
+        } catch (Exception ex) {
+            CrashReport crashReport = CrashReport.create(ex, "Cave Biome decoration");
+            crashReport.addElement("Generation").add("CenterX", (Object)chunkPos.x).add("CenterZ", (Object)chunkPos.z).add("Seed", (Object)l).add("UndergroundBiome", (Object)underground);
             throw new CrashException(crashReport);
         }
         ci.cancel();

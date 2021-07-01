@@ -3,24 +3,24 @@
   "required": true,
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BridgePlatformMixin",
+    "MineshaftCorridorMixin",
+    "MixinAbstractNetherSurfaceBuilder",
+    "MixinAxolotlEntity",
     "MixinChunkGenerator",
     "MixinChunkGeneratorSettings",
     "MixinDeepslateBlockSource",
     "MixinDefaultBiomeFeatures",
     "MixinDimensionType",
+    "MixinDripstoneClusterFeature",
     "MixinHorizontalVoronoiBiomeAccessType",
+    "MixinNetherForestSurfaceBuilder",
+    "MixinSmallDripstoneFeature",
     "MixinVanillaLayeredBiomeSource",
-    "MixinDeepslateBlockSource",
     "NewHeightMixin",
     "PortalRoomMixin",
-    "MineshaftCorridorMixin",
-    "BridgePlatformMixin",
-    "MixinNetherForestSurfaceBuilder",
-    "MixinAbstractNetherSurfaceBuilder",
-    "MixinAxolotlEntity",
     "TreeFeatureMixin",
-    "MixinDripstoneClusterFeature",
-    "MixinSmallDripstoneFeature"
+    "accessors.StructureAccessorAccessor"
   ],
   "client": [
     "MixinBiomeColors"
