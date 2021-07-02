@@ -22,19 +22,7 @@ Thank you for considering contributing to CCGEN! Please see the
 
 ## Contributions
 
-SuperCoder79: Original code of 3D Biomes (https://github.com/SuperCoder7979/cavegen)
-
-nyuppo: Fix with Cave Biomes replacing all caves with Dripstone and Lush Caves only.
-
-legosteenjaap: 
-Fix Cave Biome colors showing on surface and Mixins to client (https://github.com/AkashiiKun/CavesCliffsPartTwoMod/pull/3)
-Add Multinoisebiome Source for Cave Biomes
-
-Justsnoopy30:
-Fix feature gen and structures generating multiple times in the same place causing duplicate spawned entities and extra unnecessary server load during generation
-
-AkashiiKun:
-Replaced @Override to @Inject for mod compatibilities (MixinVanillaLayeredBiomeSource).
+Contributions can be seen on commits and on this repository collaborators.
 
 ## Security Vulnerabilities
 
