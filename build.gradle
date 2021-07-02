@@ -18,6 +18,10 @@ repositories {
 	// for more information about repositories.
 }
 
+minecraft {
+	accessWidener = file("src/main/resources/ccgen.accesswidener")
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -28,7 +32,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	
 	//Sodium
-	modImplementation "me.jellysquid.mods:sodium-fabric:0.3.0"
+	//modImplementation "me.jellysquid.mods:sodium-fabric:0.3.0"
 	
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.

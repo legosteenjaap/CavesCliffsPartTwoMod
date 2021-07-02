@@ -1,9 +1,5 @@
 package io.github.akashiikun.ccgen;
 
-import net.minecraft.util.math.noise.PerlinNoiseSampler;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.SimpleRandom;
-
 public class ConfigValues {
 
     public static final int minYOverworld = -64;
@@ -19,7 +15,7 @@ public class ConfigValues {
     public static final int heightNether = 256;
     public static final int logicalHeightNether = 128;
     public static final int lavaSeaLevel = 32;
-    
+
     public static final int minYEnd = 0;
     public static final int generationHeightEnd = 128;
     public static final int heightEnd = 256;
