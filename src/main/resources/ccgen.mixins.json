@@ -24,8 +24,10 @@
   ],
   "client": [
     "MixinBiomeColors",
-    "MixinClientWorldProperties"
+    "MixinClientWorldProperties",
+	"MixinSodiumBiomeCache"
   ],
+  "plugin": "io.github.akashiikun.ccgen.MixinConfig",
   "injectors": {
     "defaultRequire": 1
   }
