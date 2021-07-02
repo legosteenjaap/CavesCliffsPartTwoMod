@@ -20,7 +20,8 @@
     "MixinAxolotlEntity",
     "TreeFeatureMixin",
     "MixinDripstoneClusterFeature",
-    "MixinSmallDripstoneFeature"
+    "MixinSmallDripstoneFeature",
+    "MixinSpawnHelper"
   ],
   "client": [
     "MixinBiomeColors",
