@@ -1,33 +1,36 @@
 {
-  "package": "io.github.akashiikun.ccgen.mixin",
   "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.akashiikun.ccgen.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BiomeAccessMixin",
     "BridgePlatformMixin",
+    "ChunkGeneratorMixin",
+    "HorizontalVoronoiBiomeAccessTypeMixin",
     "MineshaftCorridorMixin",
     "MixinAbstractNetherSurfaceBuilder",
     "MixinAxolotlEntity",
-    "MixinChunkGenerator",
     "MixinChunkGeneratorSettings",
     "MixinDeepslateBlockSource",
     "MixinDefaultBiomeFeatures",
     "MixinDimensionType",
     "MixinDripstoneClusterFeature",
-    "MixinHorizontalVoronoiBiomeAccessType",
     "MixinNetherForestSurfaceBuilder",
     "MixinSmallDripstoneFeature",
-    "MixinVanillaLayeredBiomeSource",
+    "MultiNoiseBiomeSourceAccessor",
     "NewHeightMixin",
+    "NoiseChunkGeneratorMixin",
     "PortalRoomMixin",
     "TreeFeatureMixin",
-    "accessors.StructureAccessorAccessor"
+    "VanillaLayeredBiomeSourceMixin",
+    "structure.OceanMonumentFeatureMixin",
+    "structure.WoodlandMansionFeatureMixin"
   ],
   "client": [
     "MixinBiomeColors",
-    "MixinClientWorldProperties",
-	"MixinSodiumBiomeCache"
+    "MixinClientWorldProperties"
   ],
-  "plugin": "io.github.akashiikun.ccgen.MixinConfig",
   "injectors": {
     "defaultRequire": 1
   }

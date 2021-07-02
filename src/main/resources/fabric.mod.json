@@ -2,21 +2,20 @@
   "schemaVersion": 1,
   "id": "ccgen",
   "version": "${version}",
-
   "name": "Caves & Cliffs Part Two Mod",
   "description": "Can't wait for the part two? This mod brings it! Now featuring 3D Biomes!",
   "authors": [
     "Akashii_Kun",
-    "SuperCoder79",
     "nyuppo",
     "Justsnoopy30"
   ],
   "contact": {
-    "sources": "https://github.com/AkashiiKun/CavesCliffsPartTwoMod"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/ccgen",
+    "sources": "https://github.com/AkashiiKun/CavesCliffsPartTwoMod",
+    "issues"  : "https://github.com/AkashiiKun/CavesCliffsPartTwoMod/issues"
   },
   "license": "MIT",
   "icon": "assets/ccgen/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
