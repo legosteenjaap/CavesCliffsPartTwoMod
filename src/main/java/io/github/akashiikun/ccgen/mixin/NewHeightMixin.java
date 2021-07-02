@@ -1,17 +1,15 @@
 package io.github.akashiikun.ccgen.mixin;
 
-import java.util.OptionalLong;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
 import io.github.akashiikun.ccgen.ConfigValues;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.source.BiomeAccessType;
 import net.minecraft.world.dimension.DimensionType;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.OptionalLong;
 
 @Mixin(DimensionType.class)
 public class NewHeightMixin {
