@@ -25,6 +25,7 @@
   "mixins": [
     "ccgen.mixins.json"
   ],
+  "plugin": "io.github.akashiikun.ccgen.MixinConfig",
   "accessWidener" : "ccgen.accesswidener",
   "depends": {
     "fabricloader": ">=0.11.6",
