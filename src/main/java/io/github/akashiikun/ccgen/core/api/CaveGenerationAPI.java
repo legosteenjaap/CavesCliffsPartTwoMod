@@ -42,14 +42,15 @@ public class CaveGenerationAPI {
      * @see VanillaLayeredBiomeSourceMixin#getBiomeForNoiseGen(int, int, int)
      */
     public static Biome injectCaveBiomes(Biome surfaceBiomes, int x, int y, int z) {
-        if (y <= 12) {
-            return caveBiomeSource.getBiomeForNoiseGen(x, 0, z);
+        Biome caveBiome = caveBiomeSource.getBiomeForNoiseGen(x, 0, z);
+    	if (y <= 12 && caveBiome.getCategory() == Biome.Category.UNDERGROUND) {
+            return caveBiome;
         }
         return surfaceBiomes;
     }
 
     /**
-     * Injects a CaveBiome into the biomeSource
+     * Injects a CaveBiome into the biomeSource (needs to be in the underground biome category)
      *
      * @see #addDefaultCaves()
      *
@@ -61,11 +62,12 @@ public class CaveGenerationAPI {
             throw new NullPointerException("CaveGenerationAPI's addCaveBiome method must take a registered biome. Null or unregistered biomes will be rejected.");
         }
         // Store the key as we will get the correct biome instance when the biome source is created.
+        
         CaveLayer.addCaveBiome(biome, noise);
     }
 
     /**
-     * Injects a CaveBiome into the biomeSource
+     * Injects a CaveBiome into the biomeSource (needs to be in the underground biome category)
      *
      * @param biome the biome for injection
      * @param noise the mixed noise point used for generation

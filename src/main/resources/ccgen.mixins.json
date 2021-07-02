@@ -29,7 +29,8 @@
   ],
   "client": [
     "MixinBiomeColors",
-    "MixinClientWorldProperties"
+    "MixinClientWorldProperties",
+    "MixinSodiumBiomeCache"
   ],
   "injectors": {
     "defaultRequire": 1
